@@ -8,8 +8,8 @@ public class VehicleController : MonoBehaviour
 	public Transform backAnchorR;
 
     public Animator animator;
-    private bool isMoving;
-    private bool isTurbo;
+    private bool isMoving = false;
+    private bool isTurbo = false;
 
     public float anchorFowardDistance = 0.05f;
 	public float anchorSideDistance = 0.05f;
@@ -18,7 +18,10 @@ public class VehicleController : MonoBehaviour
 
 	float rotationSpeed = 100f;
 	float trackAdjustmentSpeed = 10f;
-	float cameraAdjustmentSpeed = 20f;
+	float cameraAdjustmentTime = 0.03f;
+    Vector3 velocityForward = Vector3.zero;
+    Vector3 velocityBackL = Vector3.zero;
+    Vector3 velocityBackR = Vector3.zero;
 
     float springConstant = 100f;
     float hoveringBaseHeight = 0.1f;
@@ -26,6 +29,8 @@ public class VehicleController : MonoBehaviour
 	Vector2 velocity = new Vector2(5.0f, 0.0f);
 
     LayerMask trackLayer;
+
+    float turboDuration = 1.0f;
 
 	void Start()
 	{
@@ -82,20 +87,26 @@ public class VehicleController : MonoBehaviour
             - anchorBackwardDistance * transform.forward
             + anchorUpDistance * transform.up;
 
-        forwardAnchor.position = Vector3.Lerp(forwardAnchor.position, targetForwardAnchorPosition, cameraAdjustmentSpeed * Time.deltaTime);
-        backAnchorL.position = Vector3.Lerp(backAnchorL.position, targetBackAnchorLPosition, cameraAdjustmentSpeed * Time.deltaTime);
-        backAnchorR.position = Vector3.Lerp(backAnchorR.position, targetBackAnchorRPosition, cameraAdjustmentSpeed * Time.deltaTime);
+        forwardAnchor.position = Vector3.SmoothDamp(forwardAnchor.position, targetForwardAnchorPosition, ref velocityForward, cameraAdjustmentTime);
+        backAnchorL.position = Vector3.SmoothDamp(backAnchorL.position, targetBackAnchorLPosition, ref velocityBackL, cameraAdjustmentTime);
+        backAnchorR.position = Vector3.SmoothDamp(backAnchorR.position, targetBackAnchorRPosition, ref velocityBackR, cameraAdjustmentTime);
 
         isMoving = (moveHorizontal != 0.0f || moveVertical != 0.0f);
-		isTurbo = false;
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isTurbo", isTurbo);
-        //if (isTurbo && !Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    float currentTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        //		animator.Play("Move", 0, currentTime);
-        //}
 
+        if (isTurbo)
+        {
+            turboDuration -= Time.deltaTime;
+            Debug.Log(turboDuration);
+        }
+
+        if (turboDuration < 0)
+        {
+            turboDuration = 1;
+            isTurbo = false;
+            velocity.x /= 2.0f;
+        }
     }
 
 	public Transform getForwardAnchor()
@@ -133,5 +144,14 @@ public class VehicleController : MonoBehaviour
     public Vector3 getCameraPos()
     {
         return (backAnchorR.position + backAnchorL.position) / 2.0f;
+    }
+
+    public void enableTurbo()
+    {
+        if (!isTurbo)
+        {
+            isTurbo = true;
+            velocity.x *= 2.0f;
+        }
     }
 }
