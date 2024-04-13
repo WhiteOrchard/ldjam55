@@ -788,6 +788,7 @@ GameObject:
   - component: {fileID: 7236781191065056002}
   - component: {fileID: 1746320840146894240}
   - component: {fileID: 7779394842590366488}
+  - component: {fileID: 7768333083097433529}
   m_Layer: 0
   m_Name: Mech
   m_TagString: Untagged
@@ -850,6 +851,26 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &7768333083097433529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909631624260684341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardAnchor: {fileID: 0}
+  backAnchorL: {fileID: 0}
+  backAnchorR: {fileID: 0}
+  animator: {fileID: 1746320840146894240}
+  anchorFowardDistance: 0.2
+  anchorSideDistance: 0.1
+  anchorUpDistance: 0.075
+  anchorBackwardDistance: 0.1
 --- !u!1 &8126103979830228173
 GameObject:
   m_ObjectHideFlags: 0

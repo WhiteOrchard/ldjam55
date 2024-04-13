@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class VehicleController : MonoBehaviour
@@ -8,7 +7,11 @@ public class VehicleController : MonoBehaviour
 	public Transform backAnchorL;
 	public Transform backAnchorR;
 
-	public float anchorFowardDistance = 0.05f;
+    public Animator animator;
+    private bool isMoving;
+    private bool isTurbo;
+
+    public float anchorFowardDistance = 0.05f;
 	public float anchorSideDistance = 0.05f;
 	public float anchorUpDistance = 0.05f;
 	public float anchorBackwardDistance = 0.05f;
@@ -16,7 +19,6 @@ public class VehicleController : MonoBehaviour
 	float rotationSpeed = 100f;
 
 	Vector2 velocity = new Vector2(1.0f, 0.0f);
-    float trackAdjustmentSpeed = 100.0f;
 
     LayerMask trackLayer;
 
@@ -30,7 +32,10 @@ public class VehicleController : MonoBehaviour
 		RaycastHit hit;
 		bool hasHit = Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 10.0f, trackLayer);
 
-		if (hasHit)
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        if (hasHit)
 		{
             Vector3 newUp = hit.normal.normalized;
 			Vector3 newForward = Vector3.Cross(transform.right, hit.normal).normalized;
@@ -40,9 +45,6 @@ public class VehicleController : MonoBehaviour
             Debug.DrawRay(transform.position, newForward, Color.blue);
             Debug.DrawRay(transform.position, newRight, Color.red);
             Debug.DrawRay(transform.position, newUp, Color.green);
-
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
 
             Matrix4x4 matrix = new Matrix4x4();
             matrix.SetColumn(0, newRight);
@@ -68,7 +70,18 @@ public class VehicleController : MonoBehaviour
 		{
 			Debug.Log("No hit");
 		}
-	}
+
+		isMoving = (moveHorizontal != 0.0f || moveVertical != 0.0f);
+		isTurbo = false;
+        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isTurbo", isTurbo);
+        //if (isTurbo && !Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    float currentTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        //		animator.Play("Move", 0, currentTime);
+        //}
+
+    }
 
 	public Transform getForwardAnchor()
 	{
