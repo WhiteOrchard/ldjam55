@@ -17,8 +17,13 @@ public class VehicleController : MonoBehaviour
 	public float anchorBackwardDistance = 0.05f;
 
 	float rotationSpeed = 100f;
+	float trackAdjustmentSpeed = 10f;
+	float cameraAdjustmentSpeed = 20f;
 
-	Vector2 velocity = new Vector2(1.0f, 0.0f);
+    float springConstant = 100f;
+    float hoveringBaseHeight = 0.1f;
+
+	Vector2 velocity = new Vector2(5.0f, 0.0f);
 
     LayerMask trackLayer;
 
@@ -36,42 +41,52 @@ public class VehicleController : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
 
         if (hasHit)
-		{
-            Vector3 newUp = hit.normal.normalized;
-			Vector3 newForward = Vector3.Cross(transform.right, hit.normal).normalized;
-			Vector3 newRight = Vector3.Cross(hit.normal, transform.forward).normalized;
-
-			Debug.DrawRay(hit.point, newUp, Color.yellow);
-            Debug.DrawRay(transform.position, newForward, Color.blue);
-            Debug.DrawRay(transform.position, newRight, Color.red);
-            Debug.DrawRay(transform.position, newUp, Color.green);
+        {
+            Vector3 targetUp = hit.normal.normalized;
+            Vector3 targetForward = Vector3.Cross(transform.right, hit.normal).normalized;
+            Vector3 targetRight = Vector3.Cross(hit.normal, transform.forward).normalized;
 
             Matrix4x4 matrix = new Matrix4x4();
-            matrix.SetColumn(0, newRight);
-            matrix.SetColumn(1, newUp);
-            matrix.SetColumn(2, newForward);
+            matrix.SetColumn(0, targetRight);
+            matrix.SetColumn(1, targetUp);
+            matrix.SetColumn(2, targetForward);
             matrix[3, 3] = 1.0f;
-            transform.rotation = matrix.rotation;
-			transform.Rotate(transform.up, moveHorizontal * rotationSpeed * Time.deltaTime, Space.World);
 
-            transform.localPosition += transform.TransformDirection(new Vector3(0, velocity.y * Time.deltaTime, moveVertical * velocity.x * Time.deltaTime));
+            transform.rotation = Quaternion.Lerp(transform.rotation, matrix.rotation, trackAdjustmentSpeed * Time.deltaTime);
+            transform.Rotate(transform.up, moveHorizontal * rotationSpeed * Time.deltaTime, Space.World);
 
-			forwardAnchor.position = transform.position + anchorFowardDistance * transform.forward;
-			backAnchorL.position = transform.position 
-				- anchorSideDistance * transform.right
-				- anchorBackwardDistance * transform.forward 
-				+ anchorUpDistance * transform.up;
-            backAnchorR.position = transform.position
-                + anchorSideDistance * transform.right
-                - anchorBackwardDistance * transform.forward
-                + anchorUpDistance * transform.up;
+            Debug.DrawRay(hit.point, targetUp, Color.yellow);
+            Debug.DrawRay(transform.position, targetForward, Color.blue);
+            Debug.DrawRay(transform.position, targetRight, Color.red);
+            Debug.DrawRay(transform.position, targetUp, Color.green);
+
+            float distanceToGround = hit.distance;
+            float springForce = springConstant * (hoveringBaseHeight - distanceToGround);
+            velocity.y = springForce;
         }
-		else 
-		{
-			Debug.Log("No hit");
-		}
+        else
+        {
+            float springForce = springConstant * hoveringBaseHeight;
+            velocity.y += springForce;
+        }
 
-		isMoving = (moveHorizontal != 0.0f || moveVertical != 0.0f);
+        transform.localPosition += transform.TransformDirection(new Vector3(0, velocity.y * Time.deltaTime, moveVertical * velocity.x * Time.deltaTime));
+
+        Vector3 targetForwardAnchorPosition = transform.position + anchorFowardDistance * transform.forward;
+        Vector3 targetBackAnchorLPosition = transform.position
+            - anchorSideDistance * transform.right
+            - anchorBackwardDistance * transform.forward
+            + anchorUpDistance * transform.up;
+        Vector3 targetBackAnchorRPosition = transform.position
+            + anchorSideDistance * transform.right
+            - anchorBackwardDistance * transform.forward
+            + anchorUpDistance * transform.up;
+
+        forwardAnchor.position = Vector3.Lerp(forwardAnchor.position, targetForwardAnchorPosition, cameraAdjustmentSpeed * Time.deltaTime);
+        backAnchorL.position = Vector3.Lerp(backAnchorL.position, targetBackAnchorLPosition, cameraAdjustmentSpeed * Time.deltaTime);
+        backAnchorR.position = Vector3.Lerp(backAnchorR.position, targetBackAnchorRPosition, cameraAdjustmentSpeed * Time.deltaTime);
+
+        isMoving = (moveHorizontal != 0.0f || moveVertical != 0.0f);
 		isTurbo = false;
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isTurbo", isTurbo);
