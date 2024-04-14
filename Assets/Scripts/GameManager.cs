@@ -11,10 +11,18 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI currentTimeCounter;
 
     public VehicleController playerVehicleController;
+    public TrackInstrumentationController trackInstrumentationController;
+
+    public static GameManager instance;
+
+    public bool isRaceStarted = false;
 
     void Start()
     {
-        
+        if (instance == null)
+        {             
+            instance = this;
+        }
     }
 
     void Update()
@@ -36,5 +44,10 @@ public class GameManager : MonoBehaviour
             currentTimeSpan.Milliseconds / 10
         );
         currentTimeCounter.text = currentTimeText;
+    }
+
+    public Vector3 GetSectorStartPosition(int sectorNumber)
+    {
+        return trackInstrumentationController.GetSectorStartPosition(sectorNumber);
     }
 }
