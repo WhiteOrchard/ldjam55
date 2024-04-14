@@ -991,6 +991,7 @@ GameObject:
   - component: {fileID: 1746320840146894240}
   - component: {fileID: 7779394842590366488}
   - component: {fileID: 7768333083097433529}
+  - component: {fileID: 3948389199947692828}
   m_Layer: 0
   m_Name: Mech
   m_TagString: Untagged
@@ -1067,7 +1068,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 0
+  isPlayer: 1
+  isEnemy: 0
+  canUseTurbo: 1
   playerSkin: {fileID: 4550079519842615053}
   enemySkin: {fileID: 1177655187951645110}
   moveParticleL: {fileID: 8558563362690709567}
@@ -1083,8 +1086,37 @@ MonoBehaviour:
   anchorUpDistance: 0.075
   anchorBackwardDistance: 0.1
   velocity: {x: 5, y: 0}
-  lastCrossedSector: -1
+  lastCrossedSector: 0
+  nextCrossedSector: 0
+  sectorProgress: 0
   correctiveFactor: 0.1
+--- !u!54 &3948389199947692828
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909631624260684341}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &8126103979830228173
 GameObject:
   m_ObjectHideFlags: 0
