@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class VehicleController : MonoBehaviour
 {
+    public GameObject moveParticleL;
+    public GameObject moveParticleR;
+
+    public GameObject turboParticleL;
+    public GameObject turboParticleR;
+
 	public Transform forwardAnchor;
 	public Transform backAnchorL;
 	public Transform backAnchorR;
@@ -111,6 +117,8 @@ public class VehicleController : MonoBehaviour
             turboDuration = 1;
             isTurbo = false;
             velocity.x /= 2.0f;
+            turboParticleL.SetActive(false);
+            turboParticleR.SetActive(false);
         }
 
         if (lapTimes.Count > 0)
@@ -163,6 +171,9 @@ public class VehicleController : MonoBehaviour
         {
             isTurbo = true;
             velocity.x *= 2.0f;
+            turboParticleL.SetActive(true);
+            turboParticleR.SetActive(true);
+
         }
     }
     public void setLastCrossedSector(int sectorNumber)

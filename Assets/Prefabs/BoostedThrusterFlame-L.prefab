@@ -222,7 +222,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0, g: 0.84760237, b: 1, a: 1}
+      minColor: {r: 0.48113197, g: 0.9206437, b: 1, a: 1}
       maxColor: {r: 0, g: 0.502923, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -4129,7 +4129,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 7446301556055409113}
   - component: {fileID: 8016491732343694132}
   m_Layer: 0
-  m_Name: BoostedThrusterFlame-L 1
+  m_Name: BoostedThrusterFlame-L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
