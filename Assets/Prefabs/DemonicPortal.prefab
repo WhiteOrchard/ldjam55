@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4806759027958714242}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 4806759027958714242}
   - component: {fileID: 8438288071806320679}
   - component: {fileID: 5980258049783133421}
-  - component: {fileID: 8620941655503390896}
+  - component: {fileID: 1999819918663007451}
   m_Layer: 0
   m_Name: DemonicPortal
   m_TagString: Untagged
@@ -4859,7 +4859,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.4866552, y: 0.5129978, z: -0.5129979, w: 0.4866551}
   m_LocalPosition: {x: 18.699, y: -5.297, z: -11.06}
-  m_LocalScale: {x: 8.886627, y: 8.886627, z: 8.886627}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2437288191408072653}
@@ -4915,8 +4915,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8620941655503390896
-BoxCollider:
+--- !u!135 &1999819918663007451
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4934,5 +4934,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.8}
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
