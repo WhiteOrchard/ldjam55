@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class VehicleController : MonoBehaviour
@@ -31,6 +32,10 @@ public class VehicleController : MonoBehaviour
     LayerMask trackLayer;
 
     float turboDuration = 1.0f;
+
+    int lastCrossedSector = -1;
+    List<float> lapTimes = new List<float>();
+    float totalTime = 0;
 
 	void Start()
 	{
@@ -107,6 +112,12 @@ public class VehicleController : MonoBehaviour
             isTurbo = false;
             velocity.x /= 2.0f;
         }
+
+        if (lapTimes.Count > 0)
+        {
+            lapTimes[lapTimes.Count-1] += Time.deltaTime;
+            totalTime += Time.deltaTime;
+        }
     }
 
 	public Transform getForwardAnchor()
@@ -153,5 +164,32 @@ public class VehicleController : MonoBehaviour
             isTurbo = true;
             velocity.x *= 2.0f;
         }
+    }
+    public void setLastCrossedSector(int sectorNumber)
+    {
+        if (sectorNumber <= lastCrossedSector)
+            lastCrossedSector = sectorNumber;
+    }
+
+    public void newLap()
+    {
+        lapTimes.Add(0);
+    }
+
+    public List<float> getLapTimes()
+    {
+        return lapTimes;
+    }
+
+    public float getCurrentLapTime()
+    {
+        if (lapTimes.Count == 0)
+            return 0;
+        return lapTimes.Last();
+    }
+
+    public float getTotalTime()
+    {
+        return totalTime;
     }
 }
