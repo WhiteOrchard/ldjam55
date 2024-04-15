@@ -10,19 +10,19 @@ public class LeaderboardManager : MonoBehaviour
 	public TMP_InputField nameInput;
 	public TMP_InputField scoreInput;
 	public Button submitButton;
+	public ScoreDisplayManager scoreDisplayManager;
 
 	private string leaderboardURL = "https://leaderboard.cyprien.workers.dev/add";
 
 	void Start()
 	{
-		submitButton.onClick.AddListener(OnSubmitClicked);
 	}
 
 	public void OnSubmitClicked()
 	{
 		if (int.TryParse(scoreInput.text, out int score))
 		{
-			StartCoroutine(SubmitScore(nameInput.text, score));
+            StartCoroutine(SubmitScore(nameInput.text, score));
 		}
 		else
 		{
@@ -47,6 +47,7 @@ public class LeaderboardManager : MonoBehaviour
 			else
 			{
 				Debug.Log("Score submitted successfully!");
+				StartCoroutine(scoreDisplayManager.GetScores());
 			}
 		}
 	}

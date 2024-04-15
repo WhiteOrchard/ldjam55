@@ -74,7 +74,7 @@ public class VehicleController : MonoBehaviour
             playerSkin.SetActive(true);
             enemySkin.SetActive(false);
         }
-        else
+        else if (isEnemy)
         {
             playerSkin.SetActive(false);
             enemySkin.SetActive(true);
@@ -136,6 +136,11 @@ public class VehicleController : MonoBehaviour
             
             prevAngleDiff = angleDiff;
             prevAngle = angle;
+        }
+
+        if (!GameManager.instance)
+        {
+            return;
         }
 
         if (!GameManager.instance.isRaceStarted)

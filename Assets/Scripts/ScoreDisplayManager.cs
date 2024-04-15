@@ -39,9 +39,10 @@ public class ScoreDisplayManager : MonoBehaviour
 		StartCoroutine(GetScores());
 	}
 
-	IEnumerator GetScores()
+	public IEnumerator GetScores()
 	{
-		using (UnityWebRequest www = UnityWebRequest.Get(getScoresUrl))
+        ClearScores();
+        using (UnityWebRequest www = UnityWebRequest.Get(getScoresUrl))
 		{
 			yield return www.SendWebRequest();
 
@@ -92,4 +93,12 @@ public class ScoreDisplayManager : MonoBehaviour
 			scoreTextComponent.text = score.score.ToString();
 		}
 	}
+
+	void ClearScores()
+	{
+        foreach (Transform child in scoresParent)
+		{
+            Destroy(child.gameObject);
+        }
+    }
 }
