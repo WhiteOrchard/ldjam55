@@ -20,6 +20,8 @@ public class LeaderboardManager : MonoBehaviour
 
 	public void OnSubmitClicked()
 	{
+		submitButton.gameObject.SetActive(false);
+
 		if (int.TryParse(scoreInput.text, out int score))
 		{
             StartCoroutine(SubmitScore(nameInput.text, score));

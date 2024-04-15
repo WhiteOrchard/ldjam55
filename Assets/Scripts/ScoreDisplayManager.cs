@@ -70,6 +70,8 @@ public class ScoreDisplayManager : MonoBehaviour
 			return;
 		}
 
+		System.Array.Sort(scoreArray.items, (x, y) => x.score.CompareTo(y.score));
+
 		foreach (var score in scoreArray.items)
 		{
 			if (scorePrefab == null || scoresParent == null)
