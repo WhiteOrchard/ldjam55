@@ -991,6 +991,7 @@ GameObject:
   - component: {fileID: 1746320840146894240}
   - component: {fileID: 7779394842590366488}
   - component: {fileID: 7768333083097433529}
+  - component: {fileID: 4314743192035241494}
   - component: {fileID: 3948389199947692828}
   m_Layer: 0
   m_Name: Mech
@@ -1068,8 +1069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
-  isEnemy: 0
+  isPlayer: 0
+  isEnemy: 1
   canUseTurbo: 1
   playerSkin: {fileID: 4550079519842615053}
   enemySkin: {fileID: 1177655187951645110}
@@ -1080,16 +1081,40 @@ MonoBehaviour:
   forwardAnchor: {fileID: 0}
   backAnchorL: {fileID: 0}
   backAnchorR: {fileID: 0}
+  checkPointPos: {x: 0, y: 0, z: 0}
+  checkPointRot: {x: 0, y: 0, z: 0, w: 0}
   animator: {fileID: 1746320840146894240}
   anchorFowardDistance: 0.2
   anchorSideDistance: 0.1
   anchorUpDistance: 0.075
   anchorBackwardDistance: 0.1
-  velocity: {x: 5, y: 0}
+  initialCameraAdjustmentTime: 0.3
+  nominalVelocity: {x: 5, y: 0}
   lastCrossedSector: 0
   nextCrossedSector: 0
   sectorProgress: 0
   correctiveFactor: 0.1
+--- !u!65 &4314743192035241494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909631624260684341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3948389199947692828
 Rigidbody:
   m_ObjectHideFlags: 0

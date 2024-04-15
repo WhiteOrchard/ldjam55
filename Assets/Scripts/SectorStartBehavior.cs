@@ -10,13 +10,12 @@ public class SectorStartBehavior : MonoBehaviour
         VehicleController vehicle = other.GetComponent<VehicleController>();
         if (vehicle != null)
         {
-            if (isFinishLine)
+            if (isFinishLine && vehicle.getNextCrossedSector() == 0)
             {
                 vehicle.newLap();
             }
 
             vehicle.setLastCrossedSector(sectorNumber);
-            Debug.Log("Now in sector " + sectorNumber.ToString());
         }
     }
 }

@@ -5,13 +5,27 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameMode
+{
+    Summon,
+    Race,
+    TimeAttack
+}
+
 public class GameManager : MonoBehaviour
 {
+    public GameMode gameMode = GameMode.Summon;
+
     public TextMeshProUGUI lapCounter;
     public TextMeshProUGUI totalTimeCounter;
     public TextMeshProUGUI currentTimeCounter;
     public TextMeshProUGUI bestTimeCounter;
     public TextMeshProUGUI positionCounter;
+    public TextMeshProUGUI reverseLabel;
+
+    public GameObject resultsPanel;
+    public TextMeshProUGUI finalPositionLabel;
+    public TextMeshProUGUI finalTimeLabel;
 
     public GameObject countdownPanel;
     public TextMeshProUGUI countdownText;
@@ -21,13 +35,20 @@ public class GameManager : MonoBehaviour
     public TrackInstrumentationController trackInstrumentationController;
 
     public Image fader;
-    public float fadeDuration = 2f;
+    public float fadeInDuration = 2f;
+    public float fadeOutDuration = 3f;
 
     float countdownDuration = 4f;
     public static GameManager instance;
     public int numberOfLaps = 3;
 
+    public bool isCountdownStarted = false;
     public bool isRaceStarted = false;
+    public bool isRaceFinished = false;
+
+    public GameObject enemyPrefab;
+    public GameObject defaultEnemies1;
+    public GameObject defaultEnemies2;
 
     void Start()
     {
@@ -37,6 +58,8 @@ public class GameManager : MonoBehaviour
         }
 
         StartFadeIn();
+        defaultEnemies1.SetActive(gameMode == GameMode.Summon || gameMode == GameMode.Race);
+        defaultEnemies2.SetActive(gameMode == GameMode.Race);
     }
 
     void Update()
@@ -69,6 +92,7 @@ public class GameManager : MonoBehaviour
             bestTimeSpan.Seconds,
             bestTimeSpan.Milliseconds / 10
         );
+
         if (bestTime > 0)
             bestTimeCounter.text = bestTimeText;
 
@@ -99,6 +123,24 @@ public class GameManager : MonoBehaviour
         else if (countdownDuration <= 3.0f)
         {
             countdownText.text = "3";
+            isCountdownStarted = true;
+        }
+
+        updateReverseLabel();
+
+        if (playerVehicleController.getStartedLapsCount() > numberOfLaps && !isRaceFinished)
+        {
+            isRaceFinished = true;
+            playerVehicleController.isEnemy = true;
+            StartFadeOut();
+        }
+
+        if (isRaceFinished && fader.color.a > 0.5 && !resultsPanel.activeSelf)
+        {
+            resultsPanel.SetActive(true);
+            if (gameMode != GameMode.TimeAttack)
+                finalPositionLabel.text = "YOU FINISHED IN POSITION " + currentRank + " OUT OF " + (enemyVehicleControllerList.Count + 1);
+            finalTimeLabel.text = "YOUR BEST LAP TIME WAS " + bestTimeText;
         }
         
     }
@@ -132,18 +174,60 @@ public class GameManager : MonoBehaviour
 
     void StartFadeIn()
     {
-        StartCoroutine(FadeCoroutine());
+        StartCoroutine(FadeInCoroutine());
     }
 
-    IEnumerator FadeCoroutine()
+    IEnumerator FadeInCoroutine()
     {
         float fadeRate;
+        float progress = 0;
 
         while (fader.color.a > 0)
         {
-            fadeRate = Time.deltaTime / fadeDuration;
-            fader.color = new Color(fader.color.r, fader.color.g, fader.color.b, Mathf.Clamp01(fader.color.a - fadeRate));
+            progress += Time.deltaTime / fadeInDuration;
+            fadeRate = progress * progress;
+            fader.color = new Color(fader.color.r, fader.color.g, fader.color.b, Mathf.Clamp01(1 - fadeRate));
             yield return null;
         }
+    }
+
+    void StartFadeOut()
+    {
+        StartCoroutine(FadeOutCoroutine());
+    }
+
+    IEnumerator FadeOutCoroutine()
+    {
+        float fadeRate;
+
+        while (fader.color.a < 1)
+        {
+            fadeRate = Time.deltaTime / fadeOutDuration;
+            fader.color = new Color(fader.color.r, fader.color.g, fader.color.b, Mathf.Clamp01(fader.color.a + fadeRate));
+            yield return null;
+        }
+    }
+
+    public void updateReverseLabel()
+    {
+        if (playerVehicleController.isReversingOnTrack() && !reverseLabel.gameObject.activeSelf)
+        {
+            reverseLabel.gameObject.SetActive(true);
+        }
+        else if (!playerVehicleController.isReversingOnTrack() && reverseLabel.gameObject.activeSelf)
+        {
+            reverseLabel.gameObject.SetActive(false);
+        }
+    }
+
+    public void addOpponent(Vector3 position, Quaternion rotation, int lastCrossedSector)
+    {
+        Instantiate(enemyPrefab, position, rotation);
+        VehicleController enemyController = enemyPrefab.GetComponent<VehicleController>();
+        enemyController.forceLastCrossedSector(lastCrossedSector);
+        enemyVehicleControllerList.Add(enemyController);
+        enemyController.enableTurbo(true);
+        enemyController.checkPointPos = position;
+        enemyController.checkPointRot = rotation;
     }
 }
