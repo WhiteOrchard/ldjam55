@@ -191,6 +191,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7a58e44079a614c8c6ef4a3d9eaabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &931965140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2565111570272417404, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_Name
+      value: ScoreSubmissionGameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 295.54337
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 304.60233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.47003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633502476298831085, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
 --- !u!1 &1432662550
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,14 +531,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6959755738220984704, guid: 8ee9e5735695e1e4d8e99b7b4c3a1a1e, type: 3}
+    - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 308519524}
     - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
@@ -489,15 +554,35 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisableScoreSubmission
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: LoadLeaderboard
       objectReference: {fileID: 0}
     - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScoreSubmissionManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: SceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305875614453053475, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9040037515520609012, guid: f67f710b9ab45ee47888f117199024e2, type: 3}
@@ -576,3 +661,4 @@ SceneRoots:
   - {fileID: 1911286189}
   - {fileID: 1872188428}
   - {fileID: 308519523}
+  - {fileID: 931965140}
