@@ -21,6 +21,9 @@ public class VehicleController : MonoBehaviour
 	public Transform backAnchorL;
 	public Transform backAnchorR;
 
+    public Vector3 checkPointPos;
+    public Quaternion checkPointRot;
+
     public Animator animator;
     private bool isMoving = false;
     private bool isTurbo = false;
@@ -32,15 +35,18 @@ public class VehicleController : MonoBehaviour
 
 	float rotationSpeed = 100f;
 	float trackAdjustmentSpeed = 10f;
+    public float initialCameraAdjustmentTime = 0.3f;
 	float cameraAdjustmentTime = 0.03f;
     Vector3 velocityForward = Vector3.zero;
     Vector3 velocityBackL = Vector3.zero;
     Vector3 velocityBackR = Vector3.zero;
 
-    float springConstant = 100f;
+    public float targetSpringConstant = 100f;
+    public float springConstant = 0f;
     float hoveringBaseHeight = 0.1f;
 
-	public Vector2 velocity = new Vector2(10.0f, 0.0f);
+    public Vector2 nominalVelocity = new Vector2(5.0f, 0.0f);
+	public Vector2 velocity = new Vector2(0.0f, 0.0f);
 
     LayerMask trackLayer;
 
@@ -48,7 +54,10 @@ public class VehicleController : MonoBehaviour
 
     public int lastCrossedSector = 0;
     public int nextCrossedSector = 0;
+    float prevSectorProgress = 0.0f;
     public float sectorProgress = 0.0f;
+    int framesInReverseCount = 0;
+    bool isReversing = false;
 
     List<float> lapTimes = new List<float>();
     float totalTime = 0;
@@ -61,12 +70,10 @@ public class VehicleController : MonoBehaviour
     float prevAngleDiff;
     public float correctiveFactor = 0.0002f;
 
-    Vector3 oldPosition;
+    int countOfMissedHits = 0;
 
 	void Start()
 	{
-        if (GameManager.instance)
-            lastCrossedSector = GameManager.instance.GetSectorCount() - 1; 
         trackLayer = 1 << LayerMask.NameToLayer("RaceTrack");
 
         if (isPlayer)
@@ -79,14 +86,30 @@ public class VehicleController : MonoBehaviour
             playerSkin.SetActive(false);
             enemySkin.SetActive(true);
         }
+
+        velocity.x = nominalVelocity.x;
     }
 
     void Update()
 	{
-        if (lastCrossedSector < 0)
+        if (!GameManager.instance)
+        {
+            return;
+        }
+
+        if (lastCrossedSector  == nextCrossedSector)
         {
             lastCrossedSector = GameManager.instance.GetSectorCount() - 1;
             return;
+        }
+
+        if (springConstant < targetSpringConstant && GameManager.instance.isCountdownStarted)
+        {
+            springConstant += targetSpringConstant * Time.deltaTime * 0.1f;
+        }
+        else if (springConstant > targetSpringConstant && GameManager.instance.isCountdownStarted)
+        {
+            springConstant = targetSpringConstant;
         }
         
         if (isPlayer)
@@ -104,11 +127,12 @@ public class VehicleController : MonoBehaviour
                 - anchorBackwardDistance * transform.forward
                 + anchorUpDistance * transform.up;
 
-            forwardAnchor.position = Vector3.SmoothDamp(forwardAnchor.position, targetForwardAnchorPosition, ref velocityForward, cameraAdjustmentTime);
-            backAnchorL.position = Vector3.SmoothDamp(backAnchorL.position, targetBackAnchorLPosition, ref velocityBackL, cameraAdjustmentTime);
-            backAnchorR.position = Vector3.SmoothDamp(backAnchorR.position, targetBackAnchorRPosition, ref velocityBackR, cameraAdjustmentTime);
+            float actualCameraAdjustmentTime = GameManager.instance.isRaceStarted ? cameraAdjustmentTime : initialCameraAdjustmentTime;
 
-            Debug.DrawLine(GameManager.instance.GetSectorStartPosition(lastCrossedSector), GameManager.instance.GetSectorStartPosition(nextCrossedSector), Color.magenta);
+            forwardAnchor.position = Vector3.SmoothDamp(forwardAnchor.position, targetForwardAnchorPosition, ref velocityForward, actualCameraAdjustmentTime);
+            backAnchorL.position = Vector3.SmoothDamp(backAnchorL.position, targetBackAnchorLPosition, ref velocityBackL, actualCameraAdjustmentTime);
+            backAnchorR.position = Vector3.SmoothDamp(backAnchorR.position, targetBackAnchorRPosition, ref velocityBackR, actualCameraAdjustmentTime);
+
             Debug.Log("Last crossed sector: " + lastCrossedSector.ToString() + " Next crossed sector: " + (nextCrossedSector).ToString() + " Percentage: " + getSectorProgress());
         }
         
@@ -138,15 +162,7 @@ public class VehicleController : MonoBehaviour
             prevAngle = angle;
         }
 
-        if (!GameManager.instance)
-        {
-            return;
-        }
-
-        if (!GameManager.instance.isRaceStarted)
-        {
-            return;
-        }
+        Debug.DrawLine(GameManager.instance.GetSectorStartPosition(lastCrossedSector), GameManager.instance.GetSectorStartPosition(nextCrossedSector), Color.magenta);
 
         RaycastHit hit;
         bool hasHit = Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 10.0f, trackLayer);
@@ -174,21 +190,25 @@ public class VehicleController : MonoBehaviour
             float distanceToGround = hit.distance;
             float springForce = springConstant * (hoveringBaseHeight - distanceToGround);
             velocity.y = springForce;
+            countOfMissedHits = 0;
         }
         else
         {
-            float springForce = springConstant * hoveringBaseHeight;
-            velocity.y += springForce;
+            countOfMissedHits += 1;
+            if (countOfMissedHits > 5)
+            {
+                velocity.y = nominalVelocity.y;
+                transform.SetPositionAndRotation(checkPointPos, checkPointRot);
+            }
         }
+
+        float actualForwardVelocity = GameManager.instance.isRaceStarted ? velocity.x : 0.0f;
             
-        oldPosition = transform.position;
-        transform.localPosition += transform.TransformDirection(new Vector3(0, velocity.y * Time.deltaTime, moveForward * velocity.x * Time.deltaTime));  
-        
-        Vector3 deltaPos = transform.position - oldPosition;
-        if (deltaPos.magnitude > 10)
+        transform.localPosition += transform.TransformDirection(new Vector3(0, velocity.y * Time.deltaTime, moveForward * actualForwardVelocity * Time.deltaTime));
+
+        if (!GameManager.instance.isRaceStarted)
         {
-            velocity.y = 0;
-            transform.position = oldPosition;
+            return;
         }
 
         isMoving = (moveLateral != 0.0f || moveForward != 0.0f);
@@ -215,7 +235,7 @@ public class VehicleController : MonoBehaviour
         {
             turboDuration = 1;
             isTurbo = false;
-            velocity.x /= 2.0f;
+            velocity.x = nominalVelocity.x;
             turboParticleL.SetActive(false);
             turboParticleR.SetActive(false);
         }
@@ -227,6 +247,24 @@ public class VehicleController : MonoBehaviour
         }
 
         sectorProgress = getSectorProgress();
+        if (isPlayer)
+        {
+            float progressDiff = sectorProgress - prevSectorProgress;
+            if (progressDiff < 0)
+            {
+                framesInReverseCount++;
+                if (framesInReverseCount > 10)
+                {
+                    isReversing = true;
+                }
+            }
+            else
+            {
+                framesInReverseCount = 0;
+                isReversing = false;
+            }  
+            prevSectorProgress = sectorProgress;
+        }
     }
 
 	public Transform getForwardAnchor()
@@ -266,14 +304,14 @@ public class VehicleController : MonoBehaviour
         return (backAnchorR.position + backAnchorL.position) / 2.0f;
     }
 
-    public void enableTurbo()
+    public void enableTurbo(bool ultraTurbo)
     {
         if (!canUseTurbo)
             return;
 
         if (!isTurbo)
         {
-            velocity.x *= 2.0f;
+            velocity.x = nominalVelocity.x * (ultraTurbo ? 2.5f : 2f);
             turboParticleL.SetActive(true);
             turboParticleR.SetActive(true);
         }
@@ -286,7 +324,15 @@ public class VehicleController : MonoBehaviour
         {
             lastCrossedSector = sectorNumber;
             nextCrossedSector = GameManager.instance.GetNextSectorIndex(sectorNumber);
+            checkPointPos = transform.position;
+            checkPointRot = transform.rotation;
         }
+    }
+
+    public void forceLastCrossedSector(int sectorNumber)
+    {
+        lastCrossedSector = sectorNumber;
+        nextCrossedSector = GameManager.instance.GetNextSectorIndex(sectorNumber);
     }
 
     public void newLap()
@@ -362,5 +408,10 @@ public class VehicleController : MonoBehaviour
             return true;
         else
             return false;   
+    }
+
+    public bool isReversingOnTrack()
+    {
+        return isReversing;
     }
 }
