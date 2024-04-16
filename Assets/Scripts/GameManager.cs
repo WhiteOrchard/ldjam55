@@ -196,6 +196,8 @@ public class GameManager : MonoBehaviour
             resultsPanel.SetActive(true);
             if (gameMode != GameMode.TimeAttack)
                 finalPositionLabel.text = "YOU FINISHED IN POSITION " + currentRank + " OUT OF " + (enemyVehicleControllerList.Count + 1);
+            else
+                finalPositionLabel.text = "";
             finalTimeLabel.text = "YOUR BEST LAP TIME WAS " + bestTimeText;
         }
     }
