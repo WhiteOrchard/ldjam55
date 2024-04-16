@@ -2,11 +2,14 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
 using TMPro;
+using System;
+using System.Collections.Generic;
 
 public class ScoreDisplayManager : MonoBehaviour
 {
 	public GameObject scorePrefab;
 	public Transform scoresParent;
+	public List<int> scores = new List<int>();
 
 	private string getScoresUrl = "https://leaderboard.cyprien.workers.dev/get";
 
@@ -25,17 +28,6 @@ public class ScoreDisplayManager : MonoBehaviour
 
 	void Start()
 	{
-		string dummyJson = "{\"items\":[{\"pseudo\":\"TestUser\",\"score\":1234}]}";
-		ScoreArray scoreArray = JsonUtility.FromJson<ScoreArray>(dummyJson);
-		if (scoreArray != null && scoreArray.items != null)
-		{
-			Debug.Log("Dummy JSON parsed successfully");
-		}
-		else
-		{
-			Debug.LogError("Failed to parse dummy JSON");
-		}
-
 		StartCoroutine(GetScores());
 	}
 
@@ -70,7 +62,7 @@ public class ScoreDisplayManager : MonoBehaviour
 			return;
 		}
 
-		System.Array.Sort(scoreArray.items, (x, y) => x.score.CompareTo(y.score));
+		System.Array.Sort(scoreArray.items, (x, y) => y.score.CompareTo(x.score));
 
 		foreach (var score in scoreArray.items)
 		{
@@ -92,8 +84,16 @@ public class ScoreDisplayManager : MonoBehaviour
 			}
 
 			nameTextComponent.text = score.pseudo;
-			scoreTextComponent.text = score.score.ToString();
-		}
+            TimeSpan bestTimeSpan = TimeSpan.FromMilliseconds(score.score);
+            string bestTimeText = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                bestTimeSpan.Minutes,
+                bestTimeSpan.Seconds,
+                bestTimeSpan.Milliseconds / 10
+            );
+            scoreTextComponent.text = bestTimeText;
+
+            scores.Add(score.score);
+        }
 	}
 
 	void ClearScores()

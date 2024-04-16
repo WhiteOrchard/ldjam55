@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GameMode
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI countdownText;
 
     public VehicleController playerVehicleController;
-    public List<VehicleController> enemyVehicleControllerList = new List<VehicleController>();
+    List<VehicleController> enemyVehicleControllerList = new List<VehicleController>();
     public TrackInstrumentationController trackInstrumentationController;
 
     public Image fader;
@@ -57,9 +58,46 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
+        PlayerPrefs.SetInt("CurrentTime", -1);
+        PlayerPrefs.Save();
+
+        switch (PlayerPrefs.GetInt("GameMode", 0))
+        {
+            case 0:
+                gameMode = GameMode.Summon;
+                break;
+            case 1:
+                gameMode = GameMode.Race;
+                break;
+            case 2:
+                gameMode = GameMode.TimeAttack;
+                break;
+        }
+
         StartFadeIn();
         defaultEnemies1.SetActive(gameMode == GameMode.Summon || gameMode == GameMode.Race);
         defaultEnemies2.SetActive(gameMode == GameMode.Race);
+
+        Debug.Log(gameMode == GameMode.Summon || gameMode == GameMode.Race);
+        Debug.Log(gameMode == GameMode.Race);
+
+        if (gameMode == GameMode.Summon || gameMode == GameMode.Race)
+        {
+            foreach (VehicleController enemyController in defaultEnemies1.GetComponentsInChildren<VehicleController>())
+            {
+                enemyVehicleControllerList.Add(enemyController);
+            }
+        }
+
+        if (gameMode == GameMode.Race)
+        {
+            foreach (VehicleController enemyController in defaultEnemies2.GetComponentsInChildren<VehicleController>())
+            {
+                enemyVehicleControllerList.Add(enemyController);
+            }
+        }
+
+
     }
 
     void Update()
@@ -137,6 +175,8 @@ public class GameManager : MonoBehaviour
 
         if (isRaceFinished && fader.color.a > 0.5 && !resultsPanel.activeSelf)
         {
+            PlayerPrefs.SetInt("CurrentTime", (int)bestTime * 1000);
+            PlayerPrefs.Save();
             resultsPanel.SetActive(true);
             if (gameMode != GameMode.TimeAttack)
                 finalPositionLabel.text = "YOU FINISHED IN POSITION " + currentRank + " OUT OF " + (enemyVehicleControllerList.Count + 1);
@@ -222,12 +262,32 @@ public class GameManager : MonoBehaviour
 
     public void addOpponent(Vector3 position, Quaternion rotation, int lastCrossedSector)
     {
-        Instantiate(enemyPrefab, position, rotation);
-        VehicleController enemyController = enemyPrefab.GetComponent<VehicleController>();
+        GameObject enemy = Instantiate(enemyPrefab, position, rotation);
+        VehicleController enemyController = enemy.GetComponent<VehicleController>();
         enemyController.forceLastCrossedSector(lastCrossedSector);
+        enemyController.lapTimes.Clear();
+        while (enemyController.getStartedLapsCount() < playerVehicleController.getStartedLapsCount())
+        {
+            enemyController.newLap();
+        }
         enemyVehicleControllerList.Add(enemyController);
         enemyController.enableTurbo(true);
         enemyController.checkPointPos = position;
         enemyController.checkPointRot = rotation;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene("RaceScene");
+    }
+
+    public void Leaderboard()
+    {
+        SceneManager.LoadScene("LeaderboardScene");
     }
 }

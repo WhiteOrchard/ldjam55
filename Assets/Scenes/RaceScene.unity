@@ -513,17 +513,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &189932361 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 957624622}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189932358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &189932364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -783,6 +772,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -794,7 +819,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1075,6 +1101,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -1086,7 +1148,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1348,22 +1411,11 @@ MonoBehaviour:
   countdownPanel: {fileID: 1671813294}
   countdownText: {fileID: 411819169}
   playerVehicleController: {fileID: 2112914349}
-  enemyVehicleControllerList:
-  - {fileID: 727339055}
-  - {fileID: 946482535}
-  - {fileID: 1998164823}
-  - {fileID: 1937572884}
-  - {fileID: 189932361}
-  - {fileID: 2102992002}
-  - {fileID: 2030700731}
-  - {fileID: 1444743177}
-  - {fileID: 604256736}
-  - {fileID: 780611779}
   trackInstrumentationController: {fileID: 1077773487}
   fader: {fileID: 557236048}
   fadeInDuration: 3
   fadeOutDuration: 2
-  numberOfLaps: 3
+  numberOfLaps: 1
   isCountdownStarted: 0
   isRaceStarted: 0
   isRaceFinished: 0
@@ -1438,17 +1490,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &604256736 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 475801365}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604256733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &604256739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -1628,17 +1669,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698033677}
   m_CullTransparentMesh: 1
---- !u!114 &727339055 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 1086401276}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &727339059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -1737,6 +1767,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -1748,7 +1814,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1812,17 +1879,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &780611779 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 1987655153}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 780611776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &780611782 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -2015,17 +2071,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &946482535 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 1489304971}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946482532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &946482538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -2124,6 +2169,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -2135,7 +2216,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2407,7 +2489,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 991003037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 558350034}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &985074802
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2677,7 +2771,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2085670511}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 558350034}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Leaderboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1038332036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2924,6 +3030,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -3033,6 +3175,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -3044,7 +3222,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -3747,17 +3926,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1444743177 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 403811607}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444743174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1444743180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -3856,6 +4024,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -3867,7 +4071,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -4580,6 +4785,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -4591,7 +4832,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -4789,17 +5031,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1937572884 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 754473486}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937572881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1937572887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -4898,6 +5129,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -4909,7 +5176,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -4973,17 +5241,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1998164823 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 1920079242}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998164820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1998164826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -5042,17 +5299,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2030700731 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 2070193685}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030700728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2030700734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -5151,6 +5397,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: checkPointRot.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: lastCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
+      propertyPath: nextCrossedSector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
       propertyPath: anchorBackwardDistance
       value: 0.15
       objectReference: {fileID: 0}
@@ -5162,7 +5444,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4314743192035241494, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5360,17 +5643,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2102992002 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7768333083097433529, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
-  m_PrefabInstance: {fileID: 1141756469}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2102991999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9589a2c55afd4842a466580be9dc015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2102992005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236781191065056002, guid: 708bb6b760edaf040a71e51bd0338326, type: 3}
@@ -5462,7 +5734,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1989551937217137427}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 558350034}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1470296542765293287
 MonoBehaviour:
   m_ObjectHideFlags: 0

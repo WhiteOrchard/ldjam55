@@ -59,7 +59,7 @@ public class VehicleController : MonoBehaviour
     int framesInReverseCount = 0;
     bool isReversing = false;
 
-    List<float> lapTimes = new List<float>();
+    public List<float> lapTimes = new List<float>();
     float totalTime = 0;
     float bestTime = 0;
 
