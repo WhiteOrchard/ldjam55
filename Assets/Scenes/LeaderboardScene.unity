@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: POSITION 11 OUT OF 25678 SUBMITTED LAP TIMES
+  m_text: POSITION 0 OUT OF 0 SUBMITTED LAP TIMES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1c0ebc0562d6f44cafa9bdd81c08377, type: 2}
   m_sharedMaterial: {fileID: 4321201466820817776, guid: f1c0ebc0562d6f44cafa9bdd81c08377, type: 2}

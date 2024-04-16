@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         int currentLap = Mathf.Max(1, playerVehicleController.getStartedLapsCount());
+        if (currentLap > numberOfLaps)
+            currentLap = numberOfLaps;
         lapCounter.text = currentLap + "/" + numberOfLaps;
 
         float totalTime = playerVehicleController.getTotalTime();
@@ -308,18 +310,21 @@ public class GameManager : MonoBehaviour
     {
         audioThrusters.Stop();
         audioThrusters.clip = idleThrusters;
+        audioThrusters.loop = true;
         audioThrusters.Play();
     }
     public void SetActiveThrustersAudio()
     {
         audioThrusters.Stop();
         audioThrusters.clip = activeThrusters;
+        audioThrusters.loop = true;
         audioThrusters.Play();
     }
     public void SetTurboThrustersAudio()
     {
         audioThrusters.Stop();
         audioThrusters.clip = turboThrusters;
+        audioThrusters.loop = true;
         audioThrusters.Play();
     }
 }
