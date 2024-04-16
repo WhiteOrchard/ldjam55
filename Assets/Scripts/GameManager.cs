@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviour
 {
     public GameMode gameMode = GameMode.Summon;
 
+    public AudioSource audioThrusters;
+    public AudioSource audioMusic;
+
+    public AudioClip idleThrusters;
+    public AudioClip activeThrusters;
+    public AudioClip turboThrusters;
+    public AudioClip music;
+
     public TextMeshProUGUI lapCounter;
     public TextMeshProUGUI totalTimeCounter;
     public TextMeshProUGUI currentTimeCounter;
@@ -53,6 +61,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        audioThrusters.loop = true;
+        audioThrusters.clip = idleThrusters;
+
+        audioMusic.loop = true;
+        audioMusic.clip = music;
+        audioMusic.Play();
+
         if (instance == null)
         {             
             instance = this;
@@ -96,8 +111,6 @@ public class GameManager : MonoBehaviour
                 enemyVehicleControllerList.Add(enemyController);
             }
         }
-
-
     }
 
     void Update()
@@ -146,7 +159,7 @@ public class GameManager : MonoBehaviour
         }
         else if (countdownDuration <= 0.0f)
         {
-            countdownText.text = "GO";
+            countdownText.text = "GO!";
             
             isRaceStarted = true;
         }
@@ -162,6 +175,7 @@ public class GameManager : MonoBehaviour
         {
             countdownText.text = "3";
             isCountdownStarted = true;
+            audioThrusters.Play();
         }
 
         updateReverseLabel();
@@ -175,14 +189,13 @@ public class GameManager : MonoBehaviour
 
         if (isRaceFinished && fader.color.a > 0.5 && !resultsPanel.activeSelf)
         {
-            PlayerPrefs.SetInt("CurrentTime", (int)bestTime * 1000);
+            PlayerPrefs.SetInt("CurrentTime", (int)(bestTime * 1000));
             PlayerPrefs.Save();
             resultsPanel.SetActive(true);
             if (gameMode != GameMode.TimeAttack)
                 finalPositionLabel.text = "YOU FINISHED IN POSITION " + currentRank + " OUT OF " + (enemyVehicleControllerList.Count + 1);
             finalTimeLabel.text = "YOUR BEST LAP TIME WAS " + bestTimeText;
         }
-        
     }
 
     public int GetSectorCount()
@@ -289,5 +302,24 @@ public class GameManager : MonoBehaviour
     public void Leaderboard()
     {
         SceneManager.LoadScene("LeaderboardScene");
+    }
+
+    public void SetIdleThrustersAudio()
+    {
+        audioThrusters.Stop();
+        audioThrusters.clip = idleThrusters;
+        audioThrusters.Play();
+    }
+    public void SetActiveThrustersAudio()
+    {
+        audioThrusters.Stop();
+        audioThrusters.clip = activeThrusters;
+        audioThrusters.Play();
+    }
+    public void SetTurboThrustersAudio()
+    {
+        audioThrusters.Stop();
+        audioThrusters.clip = turboThrusters;
+        audioThrusters.Play();
     }
 }

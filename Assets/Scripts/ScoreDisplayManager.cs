@@ -10,6 +10,7 @@ public class ScoreDisplayManager : MonoBehaviour
 	public GameObject scorePrefab;
 	public Transform scoresParent;
 	public List<int> scores = new List<int>();
+	public bool scoresFetched = false;
 
 	private string getScoresUrl = "https://leaderboard.cyprien.workers.dev/get";
 
@@ -62,7 +63,7 @@ public class ScoreDisplayManager : MonoBehaviour
 			return;
 		}
 
-		System.Array.Sort(scoreArray.items, (x, y) => y.score.CompareTo(x.score));
+		System.Array.Sort(scoreArray.items, (x, y) => x.score.CompareTo(y.score));
 
 		foreach (var score in scoreArray.items)
 		{
@@ -94,7 +95,9 @@ public class ScoreDisplayManager : MonoBehaviour
 
             scores.Add(score.score);
         }
-	}
+        scoresFetched = true;
+
+    }
 
 	void ClearScores()
 	{

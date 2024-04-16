@@ -19,6 +19,7 @@ public class LeaderboardManager : MonoBehaviour
 	private string leaderboardURL = "https://leaderboard.cyprien.workers.dev/add";
 
 	int bestLapTime;
+    bool rankComputed = false;
 
 	void Start()
 	{
@@ -37,27 +38,34 @@ public class LeaderboardManager : MonoBehaviour
                 bestTimeSpan.Milliseconds / 10
             );
             bestLapTimeLabel.text = "BEST LAP TIME: " + bestTimeText;
-
-			int rank = 1;
-			List<int> scores = scoreDisplayManager.scores;
-			scores.Sort();
-			foreach (int score in scores)
-			{
-				if (score < bestLapTime)
-				{
-                    rank++;
-                }
-				else
-				{
-                    break;
-                }
-			}
-			currentRankLabel.text = "POSITION " + rank + " OUT OF " + (scores.Count + 1) + " RECORDED LAP TIMES" ;
         }
 
     }
 
-	public void OnSubmitClicked()
+    private void Update()
+    {
+        if (scoreDisplayManager.scoresFetched && !rankComputed)
+		{
+            rankComputed = true;
+            int rank = 1;
+            List<int> scores = scoreDisplayManager.scores;
+            scores.Sort();
+            foreach (int score in scores)
+            {
+                if (score < bestLapTime)
+                {
+                    rank++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            currentRankLabel.text = "POSITION " + rank + " OUT OF " + (scores.Count + 1) + " RECORDED LAP TIMES";
+        }
+    }
+
+    public void OnSubmitClicked()
 	{
 		submitButton.gameObject.SetActive(false);
 		if (nameInput.text.Length > 16)

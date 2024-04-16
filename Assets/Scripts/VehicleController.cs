@@ -179,8 +179,10 @@ public class VehicleController : MonoBehaviour
             matrix.SetColumn(2, targetForward);
             matrix[3, 3] = 1.0f;
 
+            float actualMoveLateral = GameManager.instance.isRaceStarted ? moveLateral : 0.0f;
+
             transform.rotation = Quaternion.Lerp(transform.rotation, matrix.rotation, trackAdjustmentSpeed * Time.deltaTime);
-            transform.Rotate(transform.up, moveLateral * rotationSpeed * Time.deltaTime, Space.World);
+            transform.Rotate(transform.up, actualMoveLateral * rotationSpeed * Time.deltaTime, Space.World);
 
             //Debug.DrawRay(hit.point, targetUp, Color.yellow);
             //Debug.DrawRay(transform.position, targetForward, Color.blue);
@@ -217,11 +219,15 @@ public class VehicleController : MonoBehaviour
         
         if (isMoving && !moveParticleL.activeSelf && !moveParticleR.activeSelf)
         {
+            if (isPlayer)
+                GameManager.instance.SetActiveThrustersAudio();
             moveParticleL.SetActive(true);
             moveParticleR.SetActive(true);
         }
         else if (!isMoving && moveParticleL.activeSelf && moveParticleR.activeSelf)
         {
+            if (isPlayer)
+                GameManager.instance.SetIdleThrustersAudio();
             moveParticleL.SetActive(false);
             moveParticleR.SetActive(false);
         }
@@ -233,6 +239,8 @@ public class VehicleController : MonoBehaviour
 
         if (turboDuration < 0)
         {
+            if (isPlayer)
+                GameManager.instance.SetActiveThrustersAudio();
             turboDuration = 1;
             isTurbo = false;
             velocity.x = nominalVelocity.x;
@@ -311,6 +319,11 @@ public class VehicleController : MonoBehaviour
 
         if (!isTurbo)
         {
+            if (isPlayer)
+            {
+                GameManager.instance.SetTurboThrustersAudio();
+            }
+                
             velocity.x = nominalVelocity.x * (ultraTurbo ? 2.5f : 2f);
             turboParticleL.SetActive(true);
             turboParticleR.SetActive(true);
